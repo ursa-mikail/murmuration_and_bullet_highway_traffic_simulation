@@ -6,7 +6,7 @@
 ./clean   # stop + delete volumes + local images
 ```
 
-Concept by ![Greg Tomasyk](https://www.linkedin.com/in/gtomasyk/)
+Concept by [Greg Tomasyk](https://www.linkedin.com/in/gtomasyk/)
 
 **Stack** React/Vite (nginx) · Go API · Postgres 16 · docker compose.
 Postgres holds `layouts` (freeway configs, parameters as JSONB) and `runs` (leaderboard). Go serves `GET /api/layouts`, `GET|POST /api/runs`.
