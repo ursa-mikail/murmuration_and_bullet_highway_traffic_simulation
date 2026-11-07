@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment: { POSTGRES_USER: murmur, POSTGRES_PASSWORD: murmur, POSTGRES_DB: murmur }
+    volumes: [ "pgdata:/var/lib/postgresql/data", "./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro" ]
+    healthcheck: { test: ["CMD-SHELL","pg_isready -U murmur"], interval: 2s, retries: 30 }
+  api:
+    build: ./backend
+    environment: { DATABASE_URL: "postgres://murmur:murmur@db:5432/murmur?sslmode=disable" }
+    depends_on: { db: { condition: service_healthy } }
+  web:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [api]
+volumes: { pgdata: {} }

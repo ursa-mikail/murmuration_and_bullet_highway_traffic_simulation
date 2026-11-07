@@ -1,0 +1,2 @@
+#!/bin/sh
+cd "$(dirname "$0")" && docker compose up --build -d && echo && echo "  >>> Murmur is live:  http://localhost:8080" && echo "  (stop: ./down   wipe: ./clean)"
